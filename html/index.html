@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Jefferson Byller — Network Engineer & AI Student. +9 anos em infraestrutura de provedores de internet, agora integrando redes com IA.">
+    <title>jefferson@core-router: ~</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-caret" id="cursorCaret"></div>
+    <div class="cursor-halo" id="cursorHalo"></div>
+
+    <!-- Living Background -->
+    <div class="bg-orb bg-orb--1"></div>
+    <div class="bg-orb bg-orb--2"></div>
+    <div class="bg-orb bg-orb--3"></div>
+
+    <svg class="net-mesh" aria-hidden="true">
+        <line x1="8%" y1="18%" x2="24%" y2="34%"></line>
+        <line x1="24%" y1="34%" x2="46%" y2="14%"></line>
+        <line x1="46%" y1="14%" x2="70%" y2="30%"></line>
+        <line x1="70%" y1="30%" x2="92%" y2="12%"></line>
+        <line x1="12%" y1="82%" x2="34%" y2="68%"></line>
+        <line x1="34%" y1="68%" x2="58%" y2="88%"></line>
+        <line x1="58%" y1="88%" x2="82%" y2="70%"></line>
+        <circle class="pulse" cx="8%" cy="18%" r="2.5"></circle>
+        <circle class="pulse" cx="24%" cy="34%" r="2.5" style="animation-delay: -0.8s;"></circle>
+        <circle class="pulse" cx="46%" cy="14%" r="2.5" style="animation-delay: -1.6s;"></circle>
+        <circle class="pulse" cx="70%" cy="30%" r="2.5" style="animation-delay: -2.4s;"></circle>
+        <circle class="pulse" cx="92%" cy="12%" r="2.5" style="animation-delay: -0.4s;"></circle>
+        <circle class="pulse" cx="12%" cy="82%" r="2.5" style="animation-delay: -1.2s;"></circle>
+        <circle class="pulse" cx="34%" cy="68%" r="2.5" style="animation-delay: -2s;"></circle>
+        <circle class="pulse" cx="58%" cy="88%" r="2.5" style="animation-delay: -2.8s;"></circle>
+        <circle class="pulse" cx="82%" cy="70%" r="2.5" style="animation-delay: -0.6s;"></circle>
+    </svg>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- CRT + Noise -->
+    <div class="crt-overlay"></div>
+    <div class="noise-overlay"></div>
+
+    <!-- Boot sequence -->
+    <div class="boot-screen" id="bootScreen">
+        <div id="bootLog"></div>
+        <button class="boot-skip" id="bootSkip" type="button">pular introdução →</button>
+    </div>
+
+    <!-- Terminal-style floating nav -->
+    <nav class="term-nav" id="floatingNav">
+        <div class="tab-dots"><span></span><span></span><span></span></div>
+        <div class="tab-links">
+            <a href="#home">~/home</a>
+            <a href="#sobre">~/sobre</a>
+            <a href="#stack">~/stack</a>
+            <a href="#projetos">~/projetos</a>
+            <a href="#contato">~/contato</a>
+        </div>
+    </nav>
+
+    <main class="container">
+
+        <!-- ░░░ HERO — interactive terminal ░░░ -->
+        <section class="hero" id="home">
+            <div class="hero-grid">
+
+                <div class="term-window">
+                    <div class="term-titlebar">
+                        <span class="dot dot-red"></span>
+                        <span class="dot dot-amber"></span>
+                        <span class="dot dot-green"></span>
+                        <span class="term-title">jefferson@core-router: ~</span>
+                    </div>
+                    <div class="term-body-inner" id="termBodyInner">
+                        <div class="term-history" id="termHistory" aria-live="polite"></div>
+                        <div class="term-input-line">
+                            <span class="prompt">❯</span>
+                            <input id="termInput" type="text" autocomplete="off" autocapitalize="off" spellcheck="false"
+                                aria-label="Terminal interativo — digite um comando (help para ajuda)"
+                                placeholder="digite 'help'">
+                        </div>
+                    </div>
+                    <div class="term-cam">
+                        <span class="live-dot"></span>
+                        <img src="Images/jeff-cam.jpg" alt="Jefferson Byller" width="240" height="240" loading="eager">
+                    </div>
+                </div>
+
+                <div class="hero-side">
+                    <div class="status-card reveal">
+                        <div class="status-row"><span class="dot-pulse"></span> system online</div>
+                        <div class="metric"><span>uptime</span><span id="uptimeVal">9a 0d</span></div>
+                        <div class="metric"><span>latency</span><span id="pingVal">4.0ms</span></div>
+                        <div class="metric"><span>nodes</span><span>∞</span></div>
+                        <svg class="sparkline" viewBox="0 0 200 40" preserveAspectRatio="none">
+                            <polyline id="sparkPoly" points=""></polyline>
+                        </svg>
+                    </div>
+
+                    <div class="quick-cmds reveal">
+                        <button type="button" data-cmd="whoami">whoami</button>
+                        <button type="button" data-cmd="stack">stack</button>
+                        <button type="button" data-cmd="projects">projects</button>
+                        <button type="button" data-cmd="contact">contact</button>
+                        <button type="button" data-cmd="nmap">nmap</button>
+                        <button type="button" data-cmd="sudo hire jefferson">sudo hire jefferson</button>
+                    </div>
+
+                    <span class="hero-role reveal">Network Engineer &amp; AI Student — Campina Grande, PB</span>
+                </div>
+            </div>
+
+            <div class="scroll-hint">
+                <span>scroll</span>
+                <div class="scroll-line"></div>
+            </div>
+        </section>
+
+        <!-- ░░░ SOBRE ░░░ -->
+        <section class="about" id="sobre">
+            <div class="file-header reveal"><span class="path">cat sobre.md</span></div>
+            <div class="about-content reveal" style="transition-delay: 0.1s;">
+                <p class="md-comment">quem é jefferson</p>
+                <p>
+                    Com mais de <span class="highlight">9 anos de experiência</span> no setor de provedores de
+                    internet, construí uma sólida trajetória em <span class="highlight">infraestrutura, redes e
+                        administração de sistemas</span>, atuando com tecnologias voltadas à <span
+                        class="highlight">alta disponibilidade, virtualização, monitoramento e automação</span>.
+                </p>
+                <p>
+                    Sou formado em <span class="highlight">Análise e Desenvolvimento de Sistemas</span> e atualmente
+                    curso <span class="highlight">Inteligência Artificial</span>, direcionando minha carreira para a
+                    integração entre infraestrutura tradicional e soluções baseadas em IA. Tenho interesse especial em
+                    <span class="highlight">automação, computação em nuvem, redes de computadores, IA generativa</span>
+                    e no desenvolvimento de soluções que aumentem a eficiência operacional.
+                </p>
+                <p>
+                    Acredito que o futuro da tecnologia está na convergência entre
+                    <span class="highlight">infraestrutura</span>, <span class="highlight">automação</span> e
+                    <span class="highlight">inteligência artificial</span>, transformando ambientes complexos em
+                    soluções escaláveis, resilientes e inteligentes.
+                </p>
+            </div>
+        </section>
+
+        <!-- ░░░ STACK ░░░ -->
+        <section class="stack" id="stack">
+            <div class="file-header reveal"><span class="path">./stack.sh --list</span></div>
+
+            <div class="stack-group reveal">
+                <span class="stack-category">redes</span>
+                <div class="chips-container reveal-stagger">
+                    <div class="chip">Cisco</div>
+                    <div class="chip">Juniper</div>
+                    <div class="chip">Huawei</div>
+                    <div class="chip">Backbone</div>
+                    <div class="chip">Switch</div>
+                    <div class="chip">Tudo de um provedor</div>
+                    <div class="chip">OLTs/GPON</div>
+                    <div class="chip">Concentradores</div>
+                    <div class="chip">Roteamento</div>
+                    <div class="chip">MikroTik</div>
+                </div>
+            </div>
+
+            <div class="stack-group reveal">
+                <span class="stack-category">infraestrutura</span>
+                <div class="chips-container reveal-stagger">
+                    <div class="chip">Linux</div>
+                    <div class="chip">Proxmox</div>
+                    <div class="chip">VMware</div>
+                    <div class="chip">Docker</div>
+                    <div class="chip">AWS</div>
+                    <div class="chip">CI/CD</div>
+                    <div class="chip">Pipeline</div>
+                    <div class="chip">Microserviços</div>
+                    <div class="chip">Bancos de Dados</div>
+                </div>
+            </div>
+
+            <div class="stack-group reveal">
+                <span class="stack-category">dev / ia</span>
+                <div class="chips-container reveal-stagger">
+                    <div class="chip">Python</div>
+                    <div class="chip">Node.js</div>
+                    <div class="chip">PHP</div>
+                    <div class="chip">Git</div>
+                    <div class="chip">SQL</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ░░░ PROJETOS ░░░ -->
+        <section class="projects" id="projetos">
+            <div class="file-header reveal"><span class="path">systemctl status jspot.service</span></div>
+
+            <article class="project-card reveal">
+                <div class="project-header">
+                    <h3 class="project-title">
+                        J-SPOT Network
+                        <span class="status-active"><span class="dot-pulse"></span>active (running)</span>
+                    </h3>
+                    <span class="project-badge">Captive Portal Multi-tenant</span>
+                </div>
+
+                <p class="project-tagline">Solução completa de autenticação Wi-Fi para provedores e empresas.</p>
+
+                <div class="project-details">
+                    <div class="project-detail-item">
+                        <div class="detail-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="16 18 22 12 16 6"></polyline>
+                                <polyline points="8 6 2 12 8 18"></polyline>
+                            </svg>
+                        </div>
+                        <div class="detail-content">
+                            <h4>Stack Técnica</h4>
+                            <p>Node.js/Express, MySQL, RADIUS + MikroTik, pagamentos PIX, compliance
+                                LGPD e Marco Civil.</p>
+                        </div>
+                    </div>
+                    <div class="project-detail-item">
+                        <div class="detail-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                        </div>
+                        <div class="detail-content">
+                            <h4>O que resolve</h4>
+                            <p>Autenticação segura de hotspot, histórico de quem se conecta no seu wifi, isolamento
+                                multi-empresa e gestão simplificada de acesso com compliance total.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="jspot.html" class="btn-project">
+                    <span>open jspot.html</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </a>
+            </article>
+        </section>
+
+        <!-- ░░░ CONTATO ░░░ -->
+        <section class="contact" id="contato">
+            <div class="file-header reveal"><span class="path">cat ~/.ssh/config</span></div>
+
+            <div class="contact-container reveal">
+                <p class="intro"># aberto a novas conexões e desafios em infraestrutura e IA</p>
+
+                <div class="contact-links">
+                    <a href="https://www.linkedin.com/in/jefferson-byller-647464249/" target="_blank"
+                        rel="noopener noreferrer" class="contact-link" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-1.47 0-2.13.8-2.49 1.38v-1.17h-2.76v8.35h2.76v-4.66c0-1.25.24-2.46 1.78-2.46 1.51 0 1.53 1.43 1.53 2.54v4.61h2.77M6.46 18.5v-8.35H3.7v8.35h2.76M5.08 5.6a1.6 1.6 0 1 0 0 3.21 1.6 1.6 0 0 0 0-3.21z" />
+                        </svg>
+                        <span>
+                            <span class="host-label">Host linkedin</span>
+                            LinkedIn
+                        </span>
+                    </a>
+                    <a href="https://github.com/JeffByller" target="_blank" rel="noopener noreferrer"
+                        class="contact-link" aria-label="GitHub">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                        </svg>
+                        <span>
+                            <span class="host-label">Host github</span>
+                            GitHub
+                        </span>
+                    </a>
+                    <a href="https://www.instagram.com/jeffgsan/" target="_blank" rel="noopener noreferrer"
+                        class="contact-link" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
+                        </svg>
+                        <span>
+                            <span class="host-label">Host instagram</span>
+                            Instagram
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p><span class="prompt">jefferson@core-router:~$</span> echo "© 2026 Jefferson Byller Gomes dos Santos ·
+                Campina Grande, PB"</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

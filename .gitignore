@@ -1,0 +1,10 @@
+# Ignorar certificados SSL e dados sensíveis do Certbot
+certbot/conf/
+certbot/www/
+
+# Ignorar arquivos de ambiente
+.env
+
+# OS & Temp
+.DS_Store
+*.log
