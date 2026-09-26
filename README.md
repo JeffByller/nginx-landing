@@ -4,7 +4,7 @@ Servidor web Nginx atuando como gateway proxy reverso e renovador automatizado d
 
 ## 🚀 Funcionalidades
 
-- **Proxy Reverso**: Roteamento seguro para os containers `meuprovedor`, `jprovider`, `intelbrasmonitore` e `unifi`.
+- **Proxy Reverso**: Roteamento seguro para os containers `bkpprovider`, `jprovider`, `intelbrasmonitore` e `unifi`.
 - **Certificados SSL Automáticos**: Integração com Certbot para emissão e renovação automática HTTPS.
 - **Página de Landing**: Apresentação principal do provedor.
 
